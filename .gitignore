@@ -1,0 +1,59 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+.env
+.env.local
+.env.production
+.env.dev
+
+# Cypress
+cypress.env.json
+cypress/downloads/
+cypress/screenshots/
+cypress/videos/
+
+# Firebase
+serviceAccount.json
+
+node_modules
+dist
+dist-ssr
+*.local
+
+coverage
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+.idea
+**/.firebase
+**/.firebaserc
+**/.runtimeconfig.json
+*/npm-debug.log
+lerna-debug.log
+*~
+service-account-credentials.json
+**/package-lock.json
+# keep the root package-lock so that tools are consistent
+!/package-lock.json
+**/ui-debug.log
+**/database-debug.log
+**/firebase-debug.log
+**/pubsub-debug.log
+**/tsconfig-compile.json
+yarn.lock
