@@ -64,10 +64,8 @@ export const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 25rem;
-  height: 19rem;
 
   @media (max-width: 300px) {
     width: 19rem;
-    height: 13rem;
   }
 `;

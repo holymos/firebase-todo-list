@@ -33,13 +33,11 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const todosRef = doc(db, 'todos', id);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.value) return;
-
     setTodoTitle(e.target.value);
   };
 
   const handleBlur = async (e: FocusEvent<HTMLInputElement>) => {
-    if (!e.target.value) return;
+    if (!e.target.value) return setTodoTitle(title);
 
     try {
       const todosRef = doc(db, 'todos', id);
@@ -53,7 +51,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   };
 
   const handleKeydown = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if (!(e.target as HTMLInputElement).value) return;
+    if (!(e.target as HTMLInputElement).value) return setTodoTitle(title);
 
     if (e.key === 'Enter') {
       setIsEditing(false);
@@ -111,6 +109,13 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     if (isLocked && creatorId !== user?.id) return;
 
     try {
+      if (status === 'archived') {
+        await updateDoc(todosRef, {
+          status: 'pending',
+        });
+        return;
+      }
+
       await updateDoc(todosRef, {
         status: status === 'completed' ? 'pending' : 'completed',
       });

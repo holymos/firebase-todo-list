@@ -7,6 +7,8 @@ export const Container = styled.main`
     background-color: ${theme.colors.gray500};
     margin-top: 1.5rem;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   `}
@@ -57,5 +59,6 @@ export const Error = styled.span`
     margin-top: 0.5rem;
     font-size: 0.75rem;
     color: ${theme.colors.error};
+    align-self: flex-start;
   `}
 `;

@@ -8,6 +8,7 @@ import * as z from 'zod';
 
 import { Header } from '@components/Header';
 import { InputSelect } from '@components/InputSelect';
+import { Loader } from '@components/Loader';
 import { TodoItem } from '@components/TodoItem';
 import { useAuth } from '@contexts/auth';
 import { db } from '@services/firebase';
@@ -121,7 +122,9 @@ export default function Todos() {
               <TodoItem todo={item} key={item.id} />
             ))}
           </S.TodoListContainer>
-        ) : null}
+        ) : (
+          <Loader />
+        )}
       </S.Container>
     </Wrapper>
   );

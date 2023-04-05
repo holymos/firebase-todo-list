@@ -15,6 +15,7 @@ type TodoWrapperProps = {
   status: TodoStatus;
   isLocked: boolean;
 };
+
 export const TodoWrapper = styled.div<TodoWrapperProps>`
   ${({ theme, status, isLocked }) => css`
     width: 100%;
@@ -41,22 +42,16 @@ export const TodoWrapper = styled.div<TodoWrapperProps>`
         ? 'line-through'
         : 'none'};
       max-width: 125px;
+      overflow-wrap: break-word;
+
+      &:disabled {
+        color: ${theme.colors.gray300};
+      }
 
       @media (max-width: 300px) {
         width: 55px;
         font-size: 0.65rem;
       }
-    }
-
-    input[type='checkbox'] {
-      appearance: none;
-      -moz-appearance: none;
-      -webkit-appearance: none;
-
-      cursor: pointer;
-    }
-
-    input[type='checkbox']:checked {
     }
   `}
 `;
