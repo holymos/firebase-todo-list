@@ -53,6 +53,13 @@ export const TodoWrapper = styled.div<TodoWrapperProps>`
         font-size: 0.65rem;
       }
     }
+
+    span {
+      color: ${theme.colors.gray300};
+      text-decoration: ${['completed', 'archived'].includes(status)
+        ? 'line-through'
+        : 'none'};
+    }
   `}
 `;
 

@@ -23,7 +23,7 @@ Cypress.Commands.add('addTodo', (title: string) => {
 });
 
 Cypress.Commands.add('deleteTodo', (title: string) => {
-  cy.get(`input[value="${title}"]`)
+  cy.contains(title)
     .parent()
     .siblings('div')
     .find('button[title="Delete"]')
@@ -31,8 +31,5 @@ Cypress.Commands.add('deleteTodo', (title: string) => {
 });
 
 Cypress.Commands.add('completeTodo', (title: string) => {
-  cy.get(`input[value="${title}"]`)
-    .parent()
-    .siblings('div[data-testid="Checkbox"]')
-    .click();
+  cy.contains(title).parent().siblings('div[data-testid="Checkbox"]').click();
 });

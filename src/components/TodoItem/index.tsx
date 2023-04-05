@@ -157,15 +157,19 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
         </S.Checkbox>
 
         <div onClick={handleClick}>
-          <input
-            type="text"
-            ref={inputRef}
-            value={todoTitle}
-            onChange={handleChange}
-            disabled={!isEditing}
-            onBlur={handleBlur}
-            onKeyDown={handleKeydown}
-          />
+          {isEditing ? (
+            <input
+              type="text"
+              ref={inputRef}
+              value={todoTitle}
+              onChange={handleChange}
+              disabled={!isEditing}
+              onBlur={handleBlur}
+              onKeyDown={handleKeydown}
+            />
+          ) : (
+            <span>{todoTitle}</span>
+          )}
         </div>
 
         <S.ActionsContainer>

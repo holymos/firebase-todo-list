@@ -65,7 +65,7 @@ describe('<TodoItem />', () => {
 
     renderWithTheme(<TodoItem todo={mockTodo} />);
 
-    expect(screen.getByRole('textbox')).toHaveValue('Todo');
+    expect(screen.getByText('Todo')).toBeInTheDocument();
     expect(screen.getByTestId('LockOpen')).toBeInTheDocument();
     expect(screen.getByTestId('TrashSimple')).toBeInTheDocument();
     expect(screen.queryByTestId('File')).not.toBeInTheDocument();
@@ -90,12 +90,10 @@ describe('<TodoItem />', () => {
 
     renderWithTheme(<TodoItem todo={mockTodo} />);
 
-    expect(screen.getByRole('textbox')).toHaveStyle({
+    expect(screen.getByText('Todo')).toHaveStyle({
       textDecoration: 'line-through',
     });
-    expect(
-      screen.getByRole('textbox').parentElement?.parentElement
-    ).toHaveStyle({
+    expect(screen.getByText('Todo').parentElement?.parentElement).toHaveStyle({
       filter: 'opacity( 0.3 )',
     });
   });
@@ -220,7 +218,7 @@ describe('<TodoItem />', () => {
 
     renderWithTheme(<TodoItem todo={mockTodo} />);
 
-    await userEvent.click(screen.getByRole('textbox').parentElement as Element);
+    await userEvent.click(screen.getByText('Todo').parentElement as Element);
     await userEvent.type(screen.getByRole('textbox'), '123');
     screen.getByRole('textbox').blur();
     expect(mockUpdateDoc).toHaveBeenCalledWith('doc', {
@@ -241,7 +239,7 @@ describe('<TodoItem />', () => {
 
     renderWithTheme(<TodoItem todo={mockTodo} />);
 
-    await userEvent.click(screen.getByRole('textbox').parentElement as Element);
+    await userEvent.click(screen.getByText('Todo').parentElement as Element);
     await userEvent.type(screen.getByRole('textbox'), '123{enter}');
 
     expect(mockUpdateDoc).toHaveBeenCalledWith('doc', {

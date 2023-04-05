@@ -18,7 +18,7 @@ describe('Todos Page', () => {
 
     cy.completeTodo('My complete todo');
 
-    cy.get('input[value="My complete todo"]')
+    cy.contains('My complete todo')
       .parent()
       .siblings('div[data-testid="Checkbox"]')
       .parent()
@@ -31,13 +31,13 @@ describe('Todos Page', () => {
   it('should delete a todo', () => {
     cy.visit('/todos');
 
-    cy.get('input[value="My deleted todo"]').should('not.exist');
+    cy.contains('My deleted todo').should('not.exist');
 
     cy.addTodo('My deleted todo');
 
     cy.deleteTodo('My deleted todo');
 
-    cy.get('input[value="My deleted todo"]').should('not.exist');
+    cy.contains('My deleted todo').should('not.exist');
   });
 
   it('should filter todos by completed', () => {
@@ -51,8 +51,8 @@ describe('Todos Page', () => {
     cy.get('div[data-testid="Select"]').click();
     cy.contains('completed').click();
 
-    cy.get('input[value="My pending todo"]').should('not.exist');
-    cy.get('input[value="My completed todo"]').should('be.visible');
+    cy.contains('My pending todo').should('not.exist');
+    cy.contains('My completed todo').should('be.visible');
 
     cy.get('div[data-testid="Select"]').click();
     cy.contains('all').click();

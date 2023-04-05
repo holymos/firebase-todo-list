@@ -24,6 +24,7 @@ const schema = z.object({
 export default function Todos() {
   const [todoItems, setTodoItems] = useState<TodoItemData[]>([]);
   const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { user } = useAuth();
 
   const filterOptions = ['all', 'completed', 'pending', 'archived', 'user'];
@@ -78,6 +79,7 @@ export default function Todos() {
 
         if (snapshot.empty) {
           setTodoItems([]);
+          setIsLoading(false);
           return;
         }
 
@@ -85,6 +87,7 @@ export default function Todos() {
           todos.push({ id: doc.id, ...doc.data() } as TodoItemData);
 
           setTodoItems(todos);
+          setIsLoading(false);
         });
       });
 
@@ -116,15 +119,14 @@ export default function Todos() {
 
         {errors && <S.Error>{errors.title?.message}</S.Error>}
 
-        {filteredTodoItems.length ? (
+        {isLoading && <Loader />}
+        {!isLoading && filteredTodoItems.length ? (
           <S.TodoListContainer>
             {filteredTodoItems.map((item) => (
               <TodoItem todo={item} key={item.id} />
             ))}
           </S.TodoListContainer>
-        ) : (
-          <Loader />
-        )}
+        ) : null}
       </S.Container>
     </Wrapper>
   );

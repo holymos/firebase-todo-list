@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const Container = styled.main`
   ${({ theme }) => css`
     width: 100%;
+    flex-grow: 1;
     padding: 2rem;
     background-color: ${theme.colors.gray500};
     margin-top: 1.5rem;
@@ -16,6 +17,7 @@ export const Container = styled.main`
 
 export const AddForm = styled.form`
   ${({ theme }) => css`
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
